@@ -29,7 +29,7 @@ class Plugin extends \MapasCulturais\Plugin
 
         // enqueue scripts and styles
         $app->view->enqueueStyle('aldirblanc', 'app', 'aldirblanc/app.css');
-
+        $app->view->assetManager->publishFolder('aldirblanc/img', 'aldirblanc/img');
         // add hooks
         $app->hook('mapasculturais.styles', function () use ($app) {
             $app->view->printStyles('aldirblanc');
@@ -41,6 +41,18 @@ class Plugin extends \MapasCulturais\Plugin
 
         $app->hook('template(subsite.<<create|edit>>.tabs-content):end', function () {
             $this->part('aldirblanc/subsite-tab-content');
+        });
+
+        /**
+         * modifica o template do autenticador quando o redirect url for para o plugin aldir blanc
+         */
+        $app->hook('controller(auth).render(multiple-local)', function() use ($app) {
+            $redirect_url = @$_SESSION['mapasculturais.auth.redirect_path'] ?: '';
+            
+            if(strpos($redirect_url, '/aldirblanc') === 0){
+                $req = $app->request;
+                $this->layout = 'aldirblanc';
+            }
         });
     }
 

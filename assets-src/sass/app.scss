@@ -1,6 +1,41 @@
 @use 'sass:color';
+
+$gray-darker: #333 !default;
+$gray-dark: #666 !default;
+$gray: #ccc !default;
+$gray-light: #e2e2e2 !default;
+$gray-lighter: #eee !default;
+
 $brand-primary: #3a72bc !default;
-$brand-primary-light: color.scale($brand-primary, $lightness: 80%);
+$brand-primary-light: color.scale($brand-primary, $lightness: 80%) !default;
+$brand-accent: #000000 !default;
+
+$brand-event: #b3b921 !default;
+$brand-agent: #1dabc6 !default;
+$brand-space: #e83f96 !default;
+$brand-project: #cc0033 !default;
+$brand-opportunity: #ED2CD4 !default;
+$brand-subsite:  #cc0033 !default;
+$brand-seal: #cc0033 !default;
+$brand-developer: #9966cc !default;
+
+$brand-info: #40b4b4 !default;
+$brand-warning: #cc9933 !default;
+$brand-warning-light: color.scale($brand-warning, $lightness: 50%) !default;
+$brand-danger: #cc3333 !default;
+$brand-danger-light: color.scale($brand-danger, $lightness: 50%) !default;
+$brand-success: #66cc66 !default;
+$brand-success-light: color.scale($brand-success, $lightness: 50%) !default;
+$brand-draft: #0d9ecc !default;
+$brand-default: $gray-light !default;
+
+$green-dark: #003c46;
+
+
+
+$unicode-approved: "\e0dd" !default;
+$unicode-disapproved: "\e0f1" !default;
+$unicode-waiting: "\e02d" !default;
 
 #main-section {
     @media screen and (max-width: 767px) {
@@ -12,11 +47,16 @@ $brand-primary-light: color.scale($brand-primary, $lightness: 80%);
     display: inline-block;
 }
 
+.box {
+    text-align: center;
+    background-image: url(/assets/aldirblanc/img/homepage_header_background.svg);
+    background-repeat: no-repeat;
+    background-position: top center;
+}
 .lab-form-intro {
     display: flex;
     box-sizing: border-box;
     flex-flow: column wrap;
-    justify-content: center;
     min-height: calc(100vh - 4.875rem);
     line-height: 1.5;
     padding: 1.5rem;
@@ -29,19 +69,51 @@ $brand-primary-light: color.scale($brand-primary, $lightness: 80%);
 
 .lab-form-question {
     font-size: 1.8rem;
-    border-bottom: 2px solid #fff;
+    border-bottom: 2px solid #f8f8f8;
+    .icon-help {
+        font-size: 1rem;
+        line-height: 1;
+        vertical-align: super;
+        text-align: center;
+        height: 1rem;
+        width: 1rem;
+        border-radius: .5rem;
+        color: #ccc; 
+        background: white; 
+        &:focus {
+            color: $brand-primary;
+        }
+        @media screen and (min-width: 768px) {
+            display: none;
+        }
+    }
 }
 
-.lab-form-boolean {
-    display: flex;
-    flex-flow: row-reverse nowrap;
-    justify-content: space-between;
+.lab-form-answer {
+    position: relative;
+    background: #f8f8f8;
+    padding: .75rem .75rem 2.5rem;
+    border-radius: 2px;
+    @media screen and (min-width: 768px) {
+        padding: 1.5rem;
+    }
+}
+
+.back {
+    position: absolute;
+    left: .75rem;
+    bottom: .75rem;
+    @media screen and (min-width: 768px) {
+        left: 1.5rem;
+        bottom: 1.5rem;
+    }
 }
 
 .btn-boolean {
     min-width: 80px;
     color: $brand-primary;
-    border: 1px solid $brand-primary;
+    background-color: #e2e2e2;
+    border: 1px solid #e2e2e2;
     &:hover, &:active {
         color: #fff;
         background-color: $brand-primary;
@@ -53,17 +125,144 @@ $brand-primary-light: color.scale($brand-primary, $lightness: 80%);
     list-style: none;
     margin: 0;
     li {
-        margin-bottom: 1.5rem;
+        padding: .75rem;
+        margin: 0 0 2px;
+        background-color: #f8f8f8;
+        border-radius: 2px;
+        transition: all .3s;
         a {
             color: $brand-primary;
             font-weight: normal;
-            transition: all .3s;
-            padding: 2px 10px;
-            &:hover, &:active {
-                background-color: $brand-primary-light;
-                text-decoration: none;
-                margin-left: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            height: 100%;
+            text-decoration: none;
+            @media screen and (min-width: 768px) {
+                flex-flow: column nowrap;
+                justify-content: space-between;
+            }
+            &:before {
+                display: block;
+                content: "N";
+                width: 36px;
+                height: 36px;
+                flex: 36px 0 0;
+                margin: 0 10px 0 0;
+                font-family: "ElegantIcons";
+                line-height: 36px;
+                text-align: center;
+                border-radius: 18px;
+                color: #fff;
+                background-color: #e2e2e2;
+                @media screen and (min-width: 768px) {
+                    order: 3;
+                    margin: 0 auto;
+                }
+            }
+            &:hover:before, &:active:before {
+                color: #fff;
+                background-color: $brand-primary;
+            }
+
+        }
+        h2 {
+            font-size: 1.2rem;
+        }
+        h3 {
+            font-size: 1rem;
+        }
+        h2, h3 {
+            font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+            line-height: 1.5;
+            text-align: left;
+            max-width: calc(100% - 46px);
+            @media screen and (min-width: 768px) {
+                text-align: center;
+                max-width: unset;
             }
         }
+        &:hover {
+            background-color: #fff;
+        }
+        &.lab-form-approved {
+            background-color: $brand-success-light;
+            a {
+                color: inherit;
+                &:before {
+                    content: $unicode-approved;
+                    color: #fff;
+                    background-color: $brand-success;
+                }
+            }
+            h2 {
+                color: #fff;
+                background-color: $brand-success;
+                padding: 6px;
+                border-radius: 2px;
+            }
+        }
+        &.lab-form-disapproved {
+            background-color: $brand-danger-light;
+            a {
+                color: inherit;
+                &:before {
+                    content: $unicode-disapproved;
+                    color: #fff;
+                    background-color: $brand-danger;
+                }
+            }
+            h2 {
+                color: #fff;
+                background-color: $brand-danger;
+                padding: 6px;
+                border-radius: 2px;
+            }
+        }
+        &.lab-form-waiting {
+            background-color: $brand-warning-light;
+            a {
+                color: inherit;
+                &:before {
+                    content: $unicode-waiting;
+                    color: #fff;
+                    background-color: $brand-warning;
+                }
+            }
+            h2 {
+                color: #fff;
+                background-color: $brand-warning;
+                padding: 6px;
+                border-radius: 2px;
+            }
+        }
+
+    }   
+    @media screen and (min-width: 768px) {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-around;
+        li {
+            flex: 1 1 0;
+            margin: 0 2px;
+            padding: 1.5rem;
+        }
+    }
+
+}
+
+.lab-form-detail {
+    display: none;
+    font-size: .85rem;
+    text-align: left;
+    padding-left: 46px;
+    @media screen and (min-width: 768px) {
+        display: block;
+        text-align: center;
+        padding-left: 0;
+    }
+    .label {
+        text-transform: uppercase;
+        letter-spacing: .1em;
+        font-size: .70rem;
     }
 }
