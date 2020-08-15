@@ -1,3 +1,7 @@
+$blue: #3a72bc !default;
+$warning: #856404 !default;
+$transition: 0.5s !default;
+
 #termos{
   padding: 5%;
   width: 90%;
@@ -19,7 +23,7 @@
   .termos-warning{
     font-size: 0.9rem;
     text-align: center;
-    color: #db872c;
+    color: $warning;
   }
   .buttons{
     display: flex;
@@ -35,20 +39,20 @@
     height: 60px;
     color: white;
     border-radius: 10px;
-    transition: 0.5s;
-    //border: 2px solid  #db872c;
-    background-color: #3a72bc;
+    transition: $transition;
+    background-color: $blue;
     box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
     font-size: 1.2rem;
+
     @media screen and (max-width: 768px) {
       width: 95%;
     }
-  }
-  .btn-prosseguir:hover{
-    background-color: white;
-    color: #3a72bc;
-    cursor: pointer;
-    box-shadow: 0 .5rem 1rem #3a72bc;
+    &:hover, &:active{
+      background-color: white;
+      color: $blue;
+      cursor: pointer;
+      box-shadow: 0 .5rem 1rem rgba($blue,.15) ;
+    }
   }
 
 
@@ -101,7 +105,7 @@
     height: 20px;
     width: 20px;
     margin: 0 20px;
-    border: 2px solid #3a72bc;
+    border: 2px solid $blue;
     border-radius: 2px;
     cursor: pointer;
   }
@@ -131,7 +135,7 @@
   .hidden-box:checked + .check-label {
     background-color: #3a72bc52;
     .check-label-box {
-      background-color: #3a72bc;
+      background-color: $blue;
       &:after {
         content: '';
         display: block;
@@ -157,19 +161,19 @@
     @media screen and (max-width: 768px) {
       top: 10%;
     }
-
   }
 
   .modal-content {
-    background-color: #fefefe;
+    background-color: #fff3cd !important;
     margin: 15% auto;
     text-align: center;
     padding: 20px;
+    color: $warning !important;
     border: 1px solid #888;
     width: 80%;
     border: none;
     border-radius: 10px;
-    border-top: 4px solid #3a72bc;
+    border-top: 4px solid $blue;
     box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
   }
 
@@ -178,11 +182,11 @@
     float: right;
     font-size: 28px;
     font-weight: bold;
-  }
-
-  .close:hover, .close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
+    transition: $transition;
+    &:hover, &:focus{
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }
   }
 }

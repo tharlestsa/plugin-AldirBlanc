@@ -117,33 +117,42 @@
 
 
     <div class="buttons">
-        <button class="btn-prosseguir" onclick="goToNextPage()">Prosseguir para inscrição</button>
+        <button class="btn-prosseguir">Prosseguir para inscrição</button>
     </div>
 
     <div id="modalAlert" class="modal">
         <!-- Modal content -->
         <div class="modal-content">
             <span class="close">&times;</span>
-            <p>Você precisa aceitar todos os termos para proseguir com a inscrição no auxílio da lei Aldir Blanc.</p>
+            <p>Você precisa aceitar todos os termos para prosseguir com a inscrição no auxílio emergencial da cultura.</p>
         </div>
     </div>
 
 </section>
 
 <script>
-    var span  = document.getElementsByClassName("close")[0];
-    var modal = document.getElementById("modalAlert");
+    let span          = document.getElementsByClassName("close")[0];
+    let modal         = document.querySelector("#modalAlert");
+    let btnProsseguir = document.querySelector(".btn-prosseguir");
 
     // When the user clicks anywhere outside of the modal, close it
     window.onclick = function(event) {
-        console.log(event.target,  modal)
-        if (event.target == modal) {
-            modal.style.display = "none";
 
+        if(event.target == btnProsseguir){
+            goToNextPage();
+        }else{
+            if(modal.style.display == 'block'){
+                modal.style.display = "none";
+                // console.log(event.target, modal)
+                // if (event.target == modal) {
+                //     modal.style.display = "none";
+                // }
+            }
         }
+
     }
 
-    // When the user clicks on <span> (x), close the modal
+    // Close the modal
     span.onclick = function() {
         modal.style.display = "none";
     }
