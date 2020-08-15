@@ -124,7 +124,7 @@
         <!-- Modal content -->
         <div class="modal-content">
             <span class="close">&times;</span>
-            <p>Você precisa aceitar todos os termos para proseguir com a inscrição Aldir Blanc no auxílio.</p>
+            <p>Você precisa aceitar todos os termos para proseguir com a inscrição no auxílio da lei Aldir Blanc.</p>
         </div>
     </div>
 
